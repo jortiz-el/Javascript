@@ -3,32 +3,27 @@
 function calculateDaysSinceEpoch(fecha) {
   var i = 0,
     salida,
-    errorFormato = "Por favor, introducir la fecha en el formato solicitado",
-    errorFecha = "La fecha introducida no es válida",
-    dia,
-    diasMes,
+    ERRORFORMATO = "Por favor, introducir la fecha en el formato solicitado",
+    ERRORFECHA = "La fecha introducida no es válida",
+    dia = (fecha[0] + fecha[1]) * 1,
+    mes = fecha[2] + fecha[3] + fecha[4],
+    anio = (fecha[5] + fecha[6] + fecha[7] + fecha[8]) * 1,
+    bisiesto = (!(anio % 4) && (anio % 100)) || !(anio % 400),
+    anioUnix = 1970,
     diasTotal = 0,
-    mes,
-    numMes,
-    anio;
+    diasMes,
+    numMes;
   while (fecha[i]) {
     i++;
   }
   if (i === 9 && fecha[0] !== " " && fecha[1] !== " ") {
-    dia = (fecha[0] + fecha[1]) * 1;
-    mes = fecha[2] + fecha[3] + fecha[4];
-    anio = (fecha[5] + fecha[6] + fecha[7] + fecha[8]) * 1;
     switch (mes) {
     case "jan":
       numMes = 1;
       diasMes = 31;
       break;
     case "feb":
-      if ((!(anio % 4) && (anio % 100)) || !(anio % 400)) {
-        diasMes = 29;
-      } else {
-        diasMes = 28;
-      }
+      diasMes = (bisiesto)? 29 : 28;
       numMes = 2;
       break;
     case "mar":
@@ -72,17 +67,13 @@ function calculateDaysSinceEpoch(fecha) {
       diasMes = 31;
       break;
     default:
-      salida = errorFormato;
+      salida = ERRORFORMATO;
     }
-    if (dia > 0 && dia < 32 && salida !== errorFormato) {
-      if ((anio >= 1970) && (dia <= diasMes)) {
+    if (dia > 0 && dia < 32 && salida !== ERRORFORMATO) {
+      if ((anio >= anioUnix) && (dia <= diasMes)) {
         while ((numMes - 1) !== 0) {
           if ((numMes - 1) === 2) {
-            if ((!(anio % 4) && (anio % 100)) || !(anio % 400)) {
-              diasTotal += 29;
-            } else {
-              diasTotal += 28;
-            }
+            diasTotal += (bisiesto)? 29 : 28; 
           } else if ((numMes - 1) === 4 || (numMes - 1) === 6 || (numMes - 1) === 9 || (numMes - 1) === 11) {
             diasTotal += 30;
           } else {
@@ -90,7 +81,7 @@ function calculateDaysSinceEpoch(fecha) {
           }
           numMes--;
         }
-        while (anio > 1970) {
+        while (anio > anioUnix) {
           if ((!((anio - 1) % 4) && ((anio - 1) % 100)) || !((anio - 1) % 400)) {
             diasTotal += 366;
           } else {
@@ -101,13 +92,13 @@ function calculateDaysSinceEpoch(fecha) {
         diasTotal += dia - 1;
         salida = diasTotal;
       } else {
-        salida = errorFecha;
+        salida = ERRORFECHA;
       }
     } else {
-      salida = errorFormato;
+      salida = ERRORFORMATO;
     }
   } else {
-    salida = errorFormato;
+    salida = ERRORFORMATO;
   }
   return salida;
 }
