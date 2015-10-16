@@ -3,8 +3,8 @@
 function calculateDaysSinceEpoch(fecha) {
   var i = 0,
     salida,
-    ERRORFORMATO = "Por favor, introducir la fecha en el formato solicitado",
-    ERRORFECHA = "La fecha introducida no es válida",
+    ERROR_FORMATO = 'Por favor, introducir la fecha en el formato solicitado',
+    ERROR_FECHA = 'La fecha introducida no es válida',
     dia = (fecha[0] + fecha[1]) * 1,
     mes = fecha[2] + fecha[3] + fecha[4],
     anio = (fecha[5] + fecha[6] + fecha[7] + fecha[8]) * 1,
@@ -67,9 +67,9 @@ function calculateDaysSinceEpoch(fecha) {
       diasMes = 31;
       break;
     default:
-      salida = ERRORFORMATO;
+      salida = ERROR_FORMATO;
     }
-    if (dia > 0 && dia < 32 && salida !== ERRORFORMATO) {
+    if (dia > 0 && dia < 32 && salida !== ERROR_FORMATO) {
       if ((anio >= anioUnix) && (dia <= diasMes)) {
         while ((numMes - 1) !== 0) {
           if ((numMes - 1) === 2) {
@@ -92,13 +92,13 @@ function calculateDaysSinceEpoch(fecha) {
         diasTotal += dia - 1;
         salida = diasTotal;
       } else {
-        salida = ERRORFECHA;
+        salida = ERROR_FECHA;
       }
     } else {
-      salida = ERRORFORMATO;
+      salida = ERROR_FORMATO;
     }
   } else {
-    salida = ERRORFORMATO;
+    salida = ERROR_FORMATO;
   }
   return salida;
 }
