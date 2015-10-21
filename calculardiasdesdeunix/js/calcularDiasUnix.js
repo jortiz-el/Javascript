@@ -16,7 +16,8 @@ function calculateDaysSinceEpoch(fecha) {
     while (fecha[i]) {
         i++;
     }
-    if ((i === 9) && (fecha[0] !== " ") && (fecha[1] !== " ")) {
+    if ((i === 9) && (fecha[0] !== " ") && (fecha[1] !== " ") &&
+            (fecha[5] !== " ") && (fecha[8] !== " ")) {
         switch (mes) {
         case "jan":
             numMes = 0;
@@ -69,7 +70,7 @@ function calculateDaysSinceEpoch(fecha) {
         default:
             salida = ERROR_FORMATO;
         }
-        if (dia > 0 && dia < 32 && salida !== ERROR_FORMATO) {
+        if ((dia > 0) && (dia < 32) && (salida !== ERROR_FORMATO) && (anio > 0)) {
             if ((anio >= anioUnix) && (dia <= diasMes)) {
                 while (numMes !== 0) {
                     if (numMes === 2) {

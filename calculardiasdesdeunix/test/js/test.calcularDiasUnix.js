@@ -28,7 +28,22 @@ describe('Check date', function() {
             });
             it('should return ERRORformato for "1 jan2015"', function() {
                 calculateDaysSinceEpoch("1 jan2015").should.equal("Por favor, introducir la fecha en el formato solicitado");
-            });           
+            }); 
+            it('should return ERRORformato for "01jan-015"', function() {
+                calculateDaysSinceEpoch("01jan-015").should.equal("Por favor, introducir la fecha en el formato solicitado");
+            });
+            it('should return ERRORformato for "01jan 015"', function() {
+                calculateDaysSinceEpoch("01jan 015").should.equal("Por favor, introducir la fecha en el formato solicitado");
+            });
+            it('should return ERRORformato for "01jan2 15"', function() {
+                calculateDaysSinceEpoch("01jan2 15").should.equal("Por favor, introducir la fecha en el formato solicitado");
+            });
+            it('should return ERRORformato for "01jan20 5"', function() {
+                calculateDaysSinceEpoch("01jan20 5").should.equal("Por favor, introducir la fecha en el formato solicitado");
+            });
+            it('should return ERRORformato for "01jan201 "', function() {
+                calculateDaysSinceEpoch("01jan201 ").should.equal("Por favor, introducir la fecha en el formato solicitado");
+            });            
             it('should return ERRORfecha for "01jan1969"', function() {
                 calculateDaysSinceEpoch("01jan1969").should.equal("La fecha introducida no es válida");
             });
@@ -58,6 +73,9 @@ describe('Check date', function() {
             });
             it('should return "2251" for "01mar1976"', function() {
                 calculateDaysSinceEpoch("01mar1976").should.equal(2251);
+            });
+            it('should return "741441" for "31dec3999"', function() {
+                calculateDaysSinceEpoch("31dec3999").should.equal(741441);
             });
         });
     });
