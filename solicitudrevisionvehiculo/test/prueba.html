@@ -18,7 +18,7 @@ function literal() {
 
 function objeto() { 
   var m = document.getElementById("matricula").value;
-  var expreg = new RegExp("^[A-Z]{1,2}\\s\\d{4}\\s([B-D]|[F-H]|[J-N]|[P-T]|[V-Z]){3}$");
+  var expreg = new RegExp("(^[A-Z]{1,2}\-\\d{4}\-([A-N]|[O-Z]){1,2}$)|(^\\d{4}\-([A-N]|[O-Z]){3}$)","i");
   
   if(expreg.test(m))
     alert("La matrícula es correcta");
