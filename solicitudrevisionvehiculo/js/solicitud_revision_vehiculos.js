@@ -32,6 +32,16 @@ function showVehicleRevisionStatus(queryString) {
         var lastEqual = this.lastIndexOf('=') + 1;
         return this.substring(lastEqual);
     };
+    function reverseQueryString(queryString) {
+        var output;
+        if (queryString[1] === "n") {
+            output = queryString;
+        } else {
+            output = "?" + queryString.substring(queryString.search("&") + 1) +
+                    "&" + queryString.substring(1, queryString.search("&"));
+        }
+        return output;
+    }
     function testNumberplate(numberplate) {
         return NP_FORMAT.test(numberplate);
     }
@@ -144,28 +154,27 @@ function showVehicleRevisionStatus(queryString) {
         return salida;
     }
 
-    if (queryString[1] === "n") {
-        if (testNumberplate(queryString.sacarPrimero())) {
-            if (calculateDays(queryString.sacarSegundo())) {
-                if (calculateHour() === 1) {
-                    message = GOOD_MORNING;
-                } else if (calculateHour() === 2) {
-                    message = GOOD_AFTERNOON;
-                } else {
-                    message = GOOD_NIGHT;
-                }
-                if (calculateDays(queryString.sacarSegundo()) <= UN_ANIO) {
-                    aplication = NOREVISION;
-                } else {
-                    aplication = "Debe ponerse en contacto con " +
-                            randomCompany(COMPANIES) + " para revisar su vehículo";
-                }
+    queryString = reverseQueryString(queryString);
+    if (testNumberplate(queryString.sacarPrimero())) {
+        if (calculateDays(queryString.sacarSegundo())) {
+            if (calculateHour() === 1) {
+                message = GOOD_MORNING;
+            } else if (calculateHour() === 2) {
+                message = GOOD_AFTERNOON;
             } else {
-                message = ERROR_DATE;
+                message = GOOD_NIGHT;
+            }
+            if (calculateDays(queryString.sacarSegundo()) <= UN_ANIO) {
+                aplication = NOREVISION;
+            } else {
+                aplication = "Debe ponerse en contacto con " +
+                        randomCompany(COMPANIES) + " para revisar su vehículo";
             }
         } else {
-            message = ERROR_NPLATE;
+            message = ERROR_DATE;
         }
+    } else {
+        message = ERROR_NPLATE;
     }
 
     return new Array(message, aplication, info_cpu);

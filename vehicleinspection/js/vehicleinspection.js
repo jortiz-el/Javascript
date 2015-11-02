@@ -1,3 +1,6 @@
+/*global globals, NP_FORMAT, DATE_TODAY, GOOD_MORNING, GOOD_AFTERNOON, GOOD_NIGHT,
+UN_ANIO, NOREVISION, INSPECTION_MSG_PRE, INSPECTION_MSG_SUF, ERROR_DATE, ERROR_NPLATE*/
+
 (function (exports) {
     "use strict";
     var globals = require("./globals.js");
@@ -17,15 +20,25 @@
             var lastEqual = this.lastIndexOf('=') + 1;
             return this.substring(lastEqual);
         };
+        function reverseQueryString(queryString) {
+            var output;
+            if (queryString[1] === "n") {
+                output = queryString;
+            } else {
+                output = "?" + queryString.substring(queryString.search("&") + 1) +
+                        "&" + queryString.substring(1, queryString.search("&"));
+            }
+            return output;
+        }
         function testNumberplate(numberplate) {
-            return NP_FORMAT.test(numberplate);
+            return globals.NP_FORMAT.test(numberplate);
         }
         function randomCompany(company) {
             var com = company.split(" ");
             return com[Math.floor(Math.random() * com.length)];
         }
         function calculateHour() {
-            var hour = DATE_TODAY.getHours(),
+            var hour = globals.DATE_TODAY.getHours(),
                 saludo;
             if ((hour >= 0) && (hour < 13)) {
                 saludo = 1; //buenos dias
@@ -111,7 +124,7 @@
                         fecharevision.setDate(dia);
                         fecharevision.setMonth(numMes);
                         fecharevision.setFullYear(anio);
-                        diasTotal = Math.round((DATE_TODAY - fecharevision) / diaMsg);
+                        diasTotal = Math.round((globals.DATE_TODAY - fecharevision) / diaMsg);
                         if (diasTotal >= 0) {
                             salida = diasTotal;
                         } else {
@@ -129,30 +142,29 @@
             return salida;
         }
 
-        if (queryString[1] === "n") {
-            if (testNumberplate(queryString.sacarPrimero())) {
-                if (calculateDays(queryString.sacarSegundo())) {
-                    if (calculateHour() === 1) {
-                        greeting = GOOD_MORNING;
-                    } else if (calculateHour() === 2) {
-                        greeting = GOOD_AFTERNOON;
-                    } else {
-                        greeting = GOOD_NIGHT;
-                    }
-                    if (calculateDays(queryString.sacarSegundo()) <= UN_ANIO) {
-                        message = NOREVISION;
-                    } else {
-                        message = INSPECTION_MSG_PRE +
-                                randomCompany(COMPANIES) + INSPECTION_MSG_SUF;
-                    }
+        queryString = reverseQueryString(queryString);
+        if (testNumberplate(queryString.sacarPrimero())) {
+            if (calculateDays(queryString.sacarSegundo())) {
+                if (calculateHour() === 1) {
+                    greeting = globals.GOOD_MORNING;
+                } else if (calculateHour() === 2) {
+                    greeting = globals.GOOD_EVENING;
                 } else {
-                    greeting = ERROR_DATE;
+                    greeting = globals.GOOD_NIGHT;
+                }
+                if (calculateDays(queryString.sacarSegundo()) <= globals.UN_ANIO) {
+                    message = globals.NOREVISION;
+                } else {
+                    message = globals.INSPECTION_MSG_PRE +
+                            randomCompany(globals.COMPANIES) + globals.INSPECTION_MSG_SUF;
                 }
             } else {
-                greeting = ERROR_NPLATE;
+                greeting = globals.ERROR_DATE;
             }
+        } else {
+            greeting = globals.ERROR_NPLATE;
         }
 
         return [greeting, message, browserAndSO];
-    }
+    };
 })(this);

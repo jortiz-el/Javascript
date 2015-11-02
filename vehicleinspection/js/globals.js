@@ -3,7 +3,7 @@
     exports.ERROR_NPLATE = "Número de matrícula incorrecto";
     exports.ERROR_DATE = "Fecha de matriculación incorrecta";
     exports.GOOD_MORNING = "Buenos días";
-    exports.GOOD_AFTERNOON = "Buenas tardes";
+    exports.GOOD_EVENING = "Buenas tardes";
     exports.GOOD_NIGHT = "Buenas noches";
     exports.NOREVISION = "Su vehículo no necesita revisión";
     exports.INSPECTION_MSG_PRE = "Debe ponerse en contacto con ";
