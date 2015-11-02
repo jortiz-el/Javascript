@@ -6,27 +6,6 @@ var globals = require("../js/globals.js"),
 // Functions to test
 var showVehicleRevisionStatus = vehicleinspection.showVehicleRevisionStatus;
 
-// Helper functions (Some of them could go into globals...)
-function currentTime() {
-    var now = new Date();
-    return now.getHours() * 100 + now.getMinutes();
-}
-function input(numberPlate, lastRevDate, switchOrder) {
-    var firstArg = numberPlate ?  "numberplate=" + numberPlate : "",
-        secondArg = lastRevDate ? "lastrevdate=" + lastRevDate : "";
-    return "?" + (switchOrder ? secondArg + firstArg : firstArg + secondArg);
-}
-
-function output(result, info) {
-    return [ result, info, MY_BROWSER + " " + MY_OS ];
-}
-
-function skipTest() {
-    it('should skip this test', function(done) {
-        done();
-    });
-}
-
 // BDD
 chai.should();
 // TDD 
