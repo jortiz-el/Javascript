@@ -2,21 +2,17 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Solicitud de revisión de un vehículo</title>
-	<script src ="js/solicitud_revision_vehiculos.js" ></script>
+	<title>Vehicle Revision Status</title>
+	<script src ="js/showVehicleRevisionStatus.js" ></script>
+	<script src ="js/showVehicleRevisionStatus_functions.js" ></script>
+	<script src="js/globals.js"></script>
+	<script src="js/main.js"></script>
 </head>
 <body>
-	<h1>Ingresa tu matricula y fecha de revision</h1>
-	<form id="miForm" action="#" method="GET" >
-		<p>Matrícula: <input type="text" name="numberplate" id="matricula" /></p>
-		<p>Fecha revisión: <input type="text" name="lastrevdate" id="fecha" /></p>
-		<br />
-		<input type="submit" value="Enviar" />
-	</form>
-	<script>
-	var query = document.location.search;
-	var show = showVehicleRevisionStatus(query);
-	alert(show);
-	</script>
+	<section>
+        <h1 id="saludo"></h1>
+        <p id="solicitud"></p>
+        <p id="sistema"></p>
+    </section>
 </body>
 </html>
