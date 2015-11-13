@@ -7,3 +7,12 @@ td {
 	background-color: lightblue;
 	border: 1px solid #666;
 }
+h1 {
+	transform: translate(120px,0);
+}
+table {
+	transform: translate(200px,0) rotate(-90deg);
+}
+td:first-child {
+	transform: rotate(90deg); 
+}

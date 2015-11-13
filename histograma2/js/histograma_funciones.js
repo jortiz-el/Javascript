@@ -15,15 +15,7 @@ function letrasNoRepetidas(contenedor, distintas) {
         }
     }
 }
-function asteriscos(arr, obj) {
-    var ast = "";
-    for (i = 0; i < arr.length; i++) {
-        if (arr[i] == obj){
-            ast += "*";
-        }
-    }
-    return ast;
-}
+
 function cuenta(arr, obj) {
     var cont = 0;
     for (i = 0; i < arr.length; i++) {
