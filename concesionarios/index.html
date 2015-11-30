@@ -3,19 +3,26 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Concesionarios de compra y venta</title>
-	<link rel="stylesheet" href="">
-	<script src ="this" ></script>
+	<link rel="stylesheet" href="css/css-reset.css">
+	<link rel="stylesheet" href="css/styles.css">
+	<script src ="js/front-end.js" ></script>
+	<script src ="js/back-end.js" ></script>
 </head>
 <body>
 	<h1>Concesionario de Coches</h1>
 	<section>
-		<h4>Elige una RED de concesionarios</h4>
-		<select name="red" id="concesionario">
-			<option value="norte">Norte</option>
-			<option value="sur">Sur</option>
-			<option value="este">Este</option>
-			<option value="oeste">Oeste</option>
-		</select>
+		<h4 id="titulo">Elige una RED de concesionarios</h4>
+		<form name="concesionarios">
+			<select name="red" >
+				<option value="norte">Norte</option>
+				<option value="sur">Sur</option>
+				<option value="este">Este</option>
+				<option value="oeste">Oeste</option>
+			</select>
+			<p id="mostrar">Mostrar</p>
+		</form>
+		<h4 id="titulo_red"></h4>
+		<table id="comprados"></table>
 	</section>
 </body>
 </html>

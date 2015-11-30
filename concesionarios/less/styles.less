@@ -1,0 +1,63 @@
+@blue-color: lightsteelblue;
+@border-line: 2px;
+@cell-width: 6em;
+*{
+	text-align: center;
+}
+
+h1 {
+	color: @blue-color;
+	font-size: 3em;
+}
+section {
+	width: 70%;
+	margin: auto;
+	h4 {
+		color: @blue-color;
+		font-size: 1.5em;
+		padding: 15px;
+	}
+	select {
+		height: 1.8em;
+		width: @cell-width;
+		background-color: @blue-color;
+		border: @border-line;
+	}
+
+	p {
+		display: inline-block;
+		width: 60px;
+		height: 30px;
+		border: @border-line solid #000;
+		border-radius: 4px;
+	    -webkit-user-select: none;
+	    -moz-user-select: none;
+	    -ms-user-select: none;
+	    user-select: none;
+	    cursor: hand;
+		&:hover {
+			background-color: @blue-color;
+			-webkit-transform: scale(1.05,1.05);
+			   -moz-transform: scale(1.05,1.05);
+			    -ms-transform: scale(1.05,1.05);
+			     -o-transform: scale(1.05,1.05);
+			        transform: scale(1.05,1.05);
+		}
+		&:active {
+			-webkit-transform: scale(.9,.9);
+			   -moz-transform: scale(.9,.9);
+			    -ms-transform: scale(.9,.9);
+			     -o-transform: scale(.9,.9);
+			        transform: scale(.9,.9);
+		}
+	}
+	table {
+		margin: auto;
+		tr,td {
+			border: @border-line solid @blue-color;
+			width: @cell-width;
+			padding: 0.2em;
+		}
+	
+	}
+}
