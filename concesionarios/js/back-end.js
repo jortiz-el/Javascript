@@ -35,7 +35,7 @@ if (haveExports === "undefined") {
     };
     module.CarDealership.prototype.show_vehicles = function (red) {
         red.vehicles.map();
-    }
+    };
 
 
 

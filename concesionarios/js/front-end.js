@@ -1,7 +1,7 @@
 /*jslint
     browser: true */
 /*global
-    taxes */
+    backEnd, setTable */
 
 (function (module) {
     "use strict";
@@ -27,12 +27,20 @@
         oeste = new backEnd.CarDealership(oeste);
 
         norte.buy_cars("una ", "numberplate", "dateLastrevDate", "buy_price", "sell_price");
-        $("prueba").innerHTML = norte.red + " " + norte.vehicles[0]["model"];
+        $("prueba").innerHTML = norte.red + " " + norte.vehicles[0].model;
 
         setTable("comprados", "Modelo", "Matricula", "F.Revision", "P.venta");
     }
 
-    function setTable(id, model, numberplate, dateLastrevDate, sell_price) {
+    /*
+    function setTable(red) {
+        red.vehicles.foreach(function(x) {
+            $("tabla").insertRow(x);
+            x.foreach(function(y) {
+                cell = row.insertCell(y);
+            });
+        });
+
         //crear tabla coches comprados
         var row = $(id).insertRow(0),
             cell = row.insertCell(0),
@@ -47,6 +55,10 @@
         cell4.innerHTML = sell_price;
     }
 
+    function setForm() {
+
+    }
+*/
 
     module.onload = function () {
         $("mostrar").onclick = getInfo;
