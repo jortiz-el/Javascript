@@ -19,7 +19,7 @@ if (haveExports === "undefined") {
 
     module.CarDealership =  function (red) {
         this.red = red;
-        this.vehicles = [];
+        this.Vehicles = [];
     };
 
     module.Vehicle = function (model, numberplate, dateLastrevDate, buy_price, sell_price) {
@@ -31,7 +31,7 @@ if (haveExports === "undefined") {
     };
 
     module.CarDealership.prototype.buy_cars = function (model, numberplate, dateLastrevDate, buy_price, sell_price) {
-        this.vehicles.push(new module.Vehicle(model, numberplate, dateLastrevDate, buy_price, sell_price));
+        this.Vehicles.push(new module.Vehicle(model, numberplate, dateLastrevDate, buy_price, sell_price));
     };
 
 /**
