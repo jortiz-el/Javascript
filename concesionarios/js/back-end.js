@@ -33,6 +33,11 @@ if (haveExports === "undefined") {
     module.CarDealership.prototype.buy_cars = function (model, numberplate, dateLastrevDate, buy_price, sell_price) {
         this.vehicles.push(new module.Vehicle(model, numberplate, dateLastrevDate, buy_price, sell_price));
     };
+    module.CarDealership.prototype.show_vehicles = function (red) {
+        red.vehicles.map();
+    }
+
+
 
 /**
     module.CarDealership.prototype.show_vehicles = function show_vehicles(id, model, numberplate, dateLastrevDate, sell_price) {
