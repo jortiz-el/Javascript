@@ -33,28 +33,12 @@ if (haveExports === "undefined") {
     module.CarDealership.prototype.buy_cars = function (model, numberplate, dateLastrevDate, buy_price, sell_price) {
         this.vehicles.push(new module.Vehicle(model, numberplate, dateLastrevDate, buy_price, sell_price));
     };
-    module.CarDealership.prototype.show_vehicles = function (red) {
-        red.vehicles.map();
+    module.CarDealership.prototype.setarrCars = function (red) {
+        var cars = Array.from(red.vehicles).map(function (x) {
+            return [x.model, x.numberplate, x.dateLastrevDate, x.buy_price, x.sell_price];
+        });
+        return cars;
     };
-
-
-
-/**
-    module.CarDealership.prototype.show_vehicles = function show_vehicles(id, model, numberplate, dateLastrevDate, sell_price) {
-        //crear tabla coches comprados
-        var row = $(id).insertRow(0),
-            cell = row.insertCell(0),
-            cell1 = row.insertCell(1),
-            cell2 = row.insertCell(2),
-            cell3 = row.insertCell(3),
-            cell4 = row.insertCell(4);
-        //añadir texto
-        cell1.innerHTML = model;
-        cell2.innerHTML = numberplate;
-        cell3.innerHTML = dateLastrevDate;
-        cell4.innerHTML = sell_price;
-
-    };*/
 
 
     return module;

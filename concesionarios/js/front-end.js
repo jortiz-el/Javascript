@@ -1,7 +1,7 @@
 /*jslint
-    browser: true */
+    browser: true*/
 /*global
-    backEnd, setTable */
+    backEnd, setBuyTable */
 
 (function (module) {
     "use strict";
@@ -18,7 +18,8 @@
             norte = "norte",
             sur = "sur",
             este = "este",
-            oeste = "oeste";
+            oeste = "oeste",
+            arrCars;
         $("titulo").innerHTML = choose_title;
         $("titulo_red").innerHTML = title + red;
         norte = new backEnd.CarDealership(norte);
@@ -26,38 +27,46 @@
         este = new backEnd.CarDealership(este);
         oeste = new backEnd.CarDealership(oeste);
 
-        norte.buy_cars("una ", "numberplate", "dateLastrevDate", "buy_price", "sell_price");
+        norte.buy_cars("Ford", "AA-23445", "04feb2000", "4000", "7000");
+        norte.buy_cars("volvo ", "BB-2323", "12jan2012", "6000", "10000");
         $("prueba").innerHTML = norte.red + " " + norte.vehicles[0].model;
 
-        setTable("comprados", "Modelo", "Matricula", "F.Revision", "P.venta");
+        arrCars = norte.setarrCars(norte);
+
+        setBuyTable(arrCars);
+
     }
 
-    /*
-    function setTable(red) {
-        red.vehicles.foreach(function(x) {
-            $("tabla").insertRow(x);
-            x.foreach(function(y) {
-                cell = row.insertCell(y);
+    function setBuyTable(arrCars) {
+        arrCars.forEach(function (item, i) {
+            var row = $("tabla").insertRow(i),
+                input = document.createElement("input"),
+                cell = row.insertCell(0);
+            input.type = "checkbox";
+            input.name = "check" + i;
+            cell.appendChild(input);
+
+            item.forEach(function (subItem, i) {
+                cell = row.insertCell(i);
+                cell.innerHTML = subItem;
             });
+
         });
-
-        //crear tabla coches comprados
-        var row = $(id).insertRow(0),
-            cell = row.insertCell(0),
-            cell1 = row.insertCell(1),
-            cell2 = row.insertCell(2),
-            cell3 = row.insertCell(3),
-            cell4 = row.insertCell(4);
-        //añadir texto
-        cell1.innerHTML = model;
-        cell2.innerHTML = numberplate;
-        cell3.innerHTML = dateLastrevDate;
-        cell4.innerHTML = sell_price;
     }
 
-    function setForm() {
-
+    function buyForm() {
+        return "hello, aqui va el formulario de compra";
     }
+
+
+
+/* Estructura para recorrer Arrays Multidimensionales
+    array.forEach(function(item, i) {
+      item.forEach(function(subItem, i) {
+        console.log(subItem);
+      });
+    });
+
 */
 
     module.onload = function () {
