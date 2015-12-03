@@ -29,11 +29,13 @@
 
         norte.buy_cars("Ford", "AA-23445", "04feb2000", "4000", "7000");
         norte.buy_cars("volvo ", "BB-2323", "12jan2012", "6000", "10000");
+        keyRescue.buy_cars("", "", "", "", "");
         $("prueba").innerHTML = norte.red + " " + norte.vehicles[0].model;
 
         arrCars = norte.setarrCars(norte);
 
         setBuyTable(arrCars);
+        buyForm();
 
     }
 
@@ -55,9 +57,20 @@
     }
 
     function buyForm() {
-        return "hello, aqui va el formulario de compra";
-    }
 
+       var form = $("form"),
+           label = document.createElement("label"),
+           text = document.createTextNode("Modelo: "),
+           input = document.createElement("input");
+        input.type = "text";
+        input.name = "modelo";
+        form.appendChild(label);
+        label.appendChild(text);
+        form.appendChild(input);
+
+
+
+    }
 
 
 /* Estructura para recorrer Arrays Multidimensionales
