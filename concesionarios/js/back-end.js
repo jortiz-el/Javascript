@@ -17,6 +17,15 @@ if (haveExports === "undefined") {
 (function (module) {
     "use strict";
 
+    module.RedcarDealership = function () {
+    this.red = {"norte": new module.CarDealership("norte"), "sur": new module.CarDealership("sur"),"este": new module.CarDealership("este"),"oeste": new module.CarDealership("oeste") }
+    }
+
+    var redDealership = new backEnd.RedcarDealership();
+    module.getInstance = function () {
+        return redDealership;
+    }
+
     module.CarDealership =  function (red) {
         this.red = red;
         this.vehicles = [];
@@ -39,9 +48,10 @@ if (haveExports === "undefined") {
         });
         return cars;
     };
-    module.CarDealership.prototype.setarrKeys = function () {
-       return Object.keys(this.vehicles[0]);
-    };
+    //sacara claves del objeto coche en un array
+     module.CarDealership.prototype.setarrKeys = function () {
+        return Object.keys(this.vehicles[0]);
+     };
 
 
     return module;

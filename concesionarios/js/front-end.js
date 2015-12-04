@@ -10,6 +10,14 @@
         return document.getElementById(id);
     }
 
+    
+
+    function getObjectdealership(select, redDealership) {
+
+        redDealership = backEnd.getInstance();
+        return redDealership.red[select];
+    }
+
 
     function getInfo() {
         var choose_title = "",
@@ -41,10 +49,6 @@
         // Arrays de coches para generar la tabla de coches comprados
         arrCars = norte.setarrCars(norte);
         arrKeys = keyRescue.setarrKeys();
-
-
-
-
            
         blankSection(BLANK);
         selectModels(MODELS);
@@ -53,20 +57,19 @@
 
          $("comprar").addEventListener("click",buyCar,false);
 
-
-
     }
-    function buyCar () {
+    
+    function buyCar() {
         var model = $("model").value,
             numberplate = $("numberplate").value,
             dateLastrevDate = $("dateLastrevDate").value,
             buy_price = $("buy_price").value,
-            sell_price = $("sell_price").value;
-            //red = $("red").value;
-            alert(red);
-        norte.buy_cars(model, numberplate, dateLastrevDate, buy_price, sell_price);
+            sell_price = $("sell_price").value,
+            red = getObjectdealership($("red").value)
+        red.buy_cars(model, numberplate, dateLastrevDate, buy_price, sell_price);
         getInfo;
     }
+    
 
 
     function setBuyTable(arrCars) {
