@@ -39,6 +39,9 @@ if (haveExports === "undefined") {
         });
         return cars;
     };
+    module.CarDealership.prototype.setarrKeys = function () {
+       return Object.keys(this.vehicles[0]);
+    };
 
 
     return module;

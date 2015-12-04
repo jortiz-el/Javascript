@@ -55,7 +55,7 @@ module.exports = function (grunt) {
         uglify: {
             my_target: {
                 files: {
-                    'lib/taxes.min.js': ['js/taxes.js']
+                    'lib/back-end.min.js': ['js/back-end.js']
                 }
             }
         },
