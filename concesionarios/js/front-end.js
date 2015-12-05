@@ -10,48 +10,49 @@
         return document.getElementById(id);
     }
 
-    
-
-    function getObjectdealership(select, redDealership) {
-
-        redDealership = backEnd.getInstance();
-        return redDealership.red[select];
-    }
+    //globales como espacio de nombres
+    var globals = function (ns) {
+    ns.RED = ["Norte", "Sur", "Este", "Oeste"];
+    ns.MODELS = ["Basic", "Homing", "Transper", "BerlinX", "MaximV8"];
+    ns.BLANK = ["tabla","botones","form"];
+    ns.redDealership = new backEnd.RedcarDealership();
+    ns.count = 0;
+    return ns;
+    }({});
 
 
     function getInfo() {
-        var choose_title = "",
+        var choose_title = "",//variable vacia solo para borrar titulo inicial
+            buy_title = "Formulario de compra ",
             title = "Concesionario ",
-            form = this.parentElement,
+            form = $("concesionarios"),
             red = form.red.value || form.red.placeholder,
-            norte = "norte",
-            sur = "sur",
-            este = "este",
-            oeste = "oeste",
             arrCars,
             keyRescue,
             arrKeys,
-            BLANK = ["tabla","botones","form"],
-            MODELS = ["Basic","Homing","Transper","BerlinX","MaximV8"];
-         
+            dealership;
+        
+        //titulos de la pagina  
         $("titulo").innerHTML = choose_title;
         $("titulo_red").innerHTML = title + red;
+        $("prueba").innerHTML = buy_title + " " + red;
 
-        norte = new backEnd.CarDealership(norte);
         //Objeto keyRescue vacio para sacar las claves del objeto Vehicle
         keyRescue = new backEnd.CarDealership("keyRescue");
         keyRescue.buy_cars("", "", "", "", "");
 
-        norte.buy_cars("Ford", "AA-23445", "04feb2000", "4000", "7000");
-        norte.buy_cars("volvo ", "BB-2323", "12jan2012", "6000", "10000");
-        $("prueba").innerHTML = norte.red + " " + norte.vehicles[0].model;
+        globals.count ++;
+        //alert(globals.count);
+        
+        
+        dealership = getDealership(red);
 
         // Arrays de coches para generar la tabla de coches comprados
-        arrCars = norte.setarrCars(norte);
+        arrCars = dealership.setarrCars();
         arrKeys = keyRescue.setarrKeys();
            
-        blankSection(BLANK);
-        selectModels(MODELS);
+        blankSection(globals.BLANK);
+        selectModels(globals.MODELS);
         setBuyTable(arrCars);
         buyForm(arrKeys);
 
@@ -59,18 +60,24 @@
 
     }
     
+
+  
     function buyCar() {
         var model = $("model").value,
             numberplate = $("numberplate").value,
             dateLastrevDate = $("dateLastrevDate").value,
             buy_price = $("buy_price").value,
             sell_price = $("sell_price").value,
-            red = getObjectdealership($("red").value)
-        red.buy_cars(model, numberplate, dateLastrevDate, buy_price, sell_price);
-        getInfo;
+            red = $("red").value,
+            dealership = getDealership(red);
+        dealership.buy_cars(model, numberplate, dateLastrevDate, buy_price, sell_price);
+        getInfo();
     }
-    
-
+ 
+    function getDealership(net) {
+        var dealership = globals.redDealership.red[net];
+        return dealership;
+    }
 
     function setBuyTable(arrCars) {
 
