@@ -1,0 +1,30 @@
+
+[0m[0m
+[0m  Test calculateBenefits function[0m
+[0m    valid arguments benefits[0m
+[2K[0G    [32m  √[0m[90m should evaluate to  "norte" for concesionario norte.red[0m
+[2K[0G    [32m  √[0m[90m should evaluate to  benefits "8000" for concesionario norte[0m
+[2K[0G    [32m  √[0m[90m should evaluate to  benefits "0" for concesionario sur[0m
+[2K[0G    [32m  √[0m[90m should evaluate to  benefits "-11000" for concesionario este[0m
+[2K[0G    [32m  √[0m[90m should evaluate to  benefits "0" for concesionario oeste[0m
+[2K[0G    [32m  √[0m[90m should evaluate to  benefits "Nan" for concesionario diagonal[0m
+[2K[0G    [32m  √[0m[90m should evaluate to  benefits "600" for concesionario centro[0m
+[2K[0G    [32m  √[0m[90m should evaluate to  benefits "2300" for concesionario noreste[0m
+[2K[0G    [32m  √[0m[90m should evaluate to  benefits "300" for concesionario noroeste[0m
+[2K[0G    [32m  √[0m[90m should evaluate to  benefits "59900" for concesionario sureste[0m
+[2K[0G    [32m  √[0m[90m should evaluate to  benefits "1500" for concesionario suroeste[0m
+[0m    invalid arguments insert data[0m
+[2K[0G    [32m  √[0m[90m should evaluate to  "nplate_msg" for invalid numberplate "3456-aa"[0m
+[2K[0G    [32m  √[0m[90m should evaluate to  "nplate_msg" for invalid numberplate "345-aaa"[0m
+[2K[0G    [32m  √[0m[90m should evaluate to  "dlrdate_msg" for invalid date " "[0m
+[2K[0G    [32m  √[0m[90m should evaluate to  "dlrdate_msg" for invalid date "29feb2015"[0m
+[2K[0G    [32m  √[0m[90m should evaluate to  "price_msg" for invalid price "2000", "1500"[0m
+[0m    valid arguments insert data[0m
+[2K[0G    [32m  √[0m[90m should evaluate to  "ok" for valid numberplate "3456-aaa"[0m
+[2K[0G    [32m  √[0m[90m should evaluate to  "ok" for valid numberplate "xx-2345-aa"[0m
+[2K[0G    [32m  √[0m[90m should evaluate to  "ok" for valid date "04feb1982"[0m
+[2K[0G    [32m  √[0m[90m should evaluate to  "ok" for valid price "2000", "3500"[0m
+
+
+[92m [0m[32m 20 passing[0m[90m (47ms)[0m
+
