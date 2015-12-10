@@ -26,5 +26,5 @@
 [2K[0G    [32m  √[0m[90m should evaluate to  "ok" for valid price "2000", "3500"[0m
 
 
-[92m [0m[32m 20 passing[0m[90m (47ms)[0m
+[92m [0m[32m 20 passing[0m[90m (71ms)[0m
 

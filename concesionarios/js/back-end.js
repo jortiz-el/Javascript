@@ -19,12 +19,12 @@ if (haveExports === "undefined") {
 (function (module) {
     "use strict";
     //globales como espacio de nombres
-    var globals = function (ns) {
+    var globals = (function (ns) {
         ns.NP_FORMAT = new RegExp("(^[A-Z]{1,2}-\\d{4}-([A-N]|[O-Z]){1,2}$)|" +
             "(^\\d{4}-([A-N]|[O-Z]){3}$)", "i");
         ns.arr_nplate = []; //array para controlar matriculas repetidas
         return ns;
-    }({});
+    }({}));
 
     //constructor de la red de concesionarios
     module.RedcarDealership = function () {
@@ -34,7 +34,7 @@ if (haveExports === "undefined") {
             "este": new module.CarDealership("este"),
             "oeste": new module.CarDealership("oeste")
         };
-    }
+    };
     //constructor de concesionarios
     module.CarDealership = function (red) {
         this.red = red;
@@ -64,14 +64,14 @@ if (haveExports === "undefined") {
     };
     //filtrar modelos de coche
     module.CarDealership.prototype.fill_cars = function (idx) {
-        var vehicle = this.vehicles[idx];
-        var cars = Array.from(this.vehicles).map(function (x) {
-            if (vehicle.model == x.model) {
-                return [x.model, x.numberplate, x.dateLastrevDate, x.buy_price, x.sell_price];
-            }
-        });
+        var vehicle = this.vehicles[idx],
+            cars = Array.from(this.vehicles).map(function (x) {
+                if (vehicle.model === x.model) {
+                    return [x.model, x.numberplate, x.dateLastrevDate, x.buy_price, x.sell_price];
+                }
+            });
         return cars.filter(function (x) {
-            return x != undefined;
+            return x !== undefined;
         });
     };
     //calculo de beneficio
@@ -86,14 +86,14 @@ if (haveExports === "undefined") {
             buys.push(x.buy_price);
         });
         sells = sells.reduce(function (sum, el) {
-            return parseInt(sum) + parseInt(el);
+            return parseInt(sum, 10) + parseInt(el, 10);
         }, 0);
         buys = buys.reduce(function (sum, el) {
-            return parseInt(sum) + parseInt(el);
+            return parseInt(sum, 10) + parseInt(el, 10);
         }, 0);
         benefits = sells - buys;
         return benefits;
-    }
+    };
     //sacar todos los valores de los coches en un array
     module.CarDealership.prototype.setarrCars = function () {
         var cars = Array.from(this.vehicles).map(function (x) {
@@ -105,50 +105,25 @@ if (haveExports === "undefined") {
     module.CarDealership.prototype.setarrKeys = function () {
         return Object.keys(this.vehicles[0]);
     };
-    module.CarDealership.prototype.validateEntry = function (numberplate, dateLastrevDate, buy_price, sell_price) {
-        var nplate_msg = "matrícula inválida",
-            dlrdate_msg = "fecha inválida",
-            price_msg = "precio venta menor que precio compra",
-            no_msg = false,
-            salida;
-        if (testNumberplate(numberplate)) {
-            if (calculateDays(dateLastrevDate)) {
-                if (parseInt(sell_price) > parseInt(buy_price)) {
-                    salida = no_msg;
-                } else {
-                    salida = price_msg;
-                }
-            } else {
-                salida = dlrdate_msg;
-            }
-
-        } else {
-            salida = nplate_msg;
-        }
-        return salida;
-    }
     //codigo reutilizado de revision vehiculo
     function testNumberplate(numberplate) {
-        "use strict";
-        return (globals.NP_FORMAT.test(numberplate) && (globals.arr_nplate.indexOf(numberplate) == -1));
+        return (globals.NP_FORMAT.test(numberplate) && (globals.arr_nplate.indexOf(numberplate) === -1));
     }
 
     function calculateDays(fecha) {
-        "use strict";
         var i = 0,
             salida,
             ERROR_FORMATO = false,
-            dia = (fecha[0] + fecha[1]) * 1,
+            dia = +(fecha[0] + fecha[1]),
             mes = fecha[2] + fecha[3] + fecha[4],
-            anio = (fecha[5] + fecha[6] + fecha[7] + fecha[8]) * 1,
+            anio = +(fecha[5] + fecha[6] + fecha[7] + fecha[8]),
             bisiesto = (!(anio % 4) && (anio % 100)) || !(anio % 400),
-            diasMes,
-            numMes;
+            diasMes;
         while (fecha[i]) {
-            i++;
+            i += 1;
         }
         if ((i === 9) && (fecha[0] !== " ") && (fecha[1] !== " ") &&
-            (fecha[5] !== " ") && (fecha[8] !== " ")) {
+                (fecha[5] !== " ") && (fecha[8] !== " ")) {
             switch (mes) {
             case "jan":
             case "mar":
@@ -181,6 +156,29 @@ if (haveExports === "undefined") {
         }
         return salida;
     }
+    module.CarDealership.prototype.validateEntry = function (numberplate, dateLastrevDate, buy_price, sell_price) {
+        var nplate_msg = "matrícula inválida",
+            dlrdate_msg = "fecha inválida",
+            price_msg = "precio venta menor que precio compra",
+            no_msg = false,
+            salida;
+        if (testNumberplate(numberplate)) {
+            if (calculateDays(dateLastrevDate)) {
+                if (parseInt(sell_price, 10) > parseInt(buy_price, 10)) {
+                    salida = no_msg;
+                } else {
+                    salida = price_msg;
+                }
+            } else {
+                salida = dlrdate_msg;
+            }
+
+        } else {
+            salida = nplate_msg;
+        }
+        return salida;
+    };
+
 
 
     return module;
