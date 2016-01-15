@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>HTML5 Contact Form</title>
+    <link rel="stylesheet" media="screen" href="css/style.css" >
+</head>
+<body>
+	<form class="contact_form" action="" method="post" name="contact_form">
+		<ul>
+		    <li>
+		         <h2>Formulario de alta para el escaparate virtual</h2>
+		         <span class="required_notification">* Denota campo obrigatório</span>
+		    </li>
+		    <li>
+		        <label for="name">Nonmbre:</label>
+		        <input type="text" name="name" required/>
+		    </li>
+		    <li>
+		        <label for="surname">Apellidos:</label>
+		        <input type="text" name="surname" required/>
+		    </li>
+		    <li>
+			    <label for="email">Email:</label>
+			    <input type="text" name="email" required/>
+			    <span class="form_hint">Formato correcto "name@something.com"</span>
+			</li>
+			<li>
+			    <label for="pass">Contraseña:</label>
+			    <input type="password" name="pass" required/>
+			</li>
+			<li>
+			    <label for="conf_pass">Confirmar Contraseña:</label>
+			    <input type="password" name="conf_pass" required/>
+			</li>
+			<li>
+			    <label for="use">Condiciones de Uso:</label>
+			    <input type="checkbox" name="use" required/>
+			</li>
+			<li>
+			    <label for="website">Url:</label>
+			    <input type="text" name="website" />
+			    <span class="form_hint">Formato correcto"http://someaddress.com"</span>
+			</li>
+			<li>
+			    <label for="adress">Direccion:</label>
+			    <input type="text" name="adress" />
+			</li>
+			<li>
+			    <label for="country">Pais:</label>
+			    <select name="country" id="" >
+			    	<option value="">España</option>
+			    	<option value="">Francia</option>
+			    	<option value="">Italia</option>
+			    	<option value="">Inglaterra</option>
+			    </select>
+			</li>
+			<li>
+			    <label for="post_code">Codigo Postal:</label>
+			    <input type="text" name="post_code" />
+			</li>
+			<li>
+			    <label for="message">Message:</label>
+			    <textarea name="message" cols="40" rows="6" ></textarea>
+			</li>
+			<li>
+			    <button class="submit" type="submit">Enviar</button>
+			    <button class="delete" type="button">Borrar Datos</button>
+			</li>
+		</ul>
+	</form>
+</body>
+</html>
