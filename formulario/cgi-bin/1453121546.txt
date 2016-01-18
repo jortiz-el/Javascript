@@ -1,0 +1,10 @@
+DATOS DE ALTA PARA ESCAPARATE VIRTUAL 
+Nombre: sergio
+Apellidos: asenjo
+Email: sergio@sergio.com
+Contraseña: 5a886f71734762b9efe5cedfd2729d6227518d42
+Url: http://skydrone.com
+Direccion: alcobendas
+Pais: Inglaterra
+Codigo Postal: 10000
+Mensaje: hola q ase

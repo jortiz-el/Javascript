@@ -1,0 +1,10 @@
+Datos de alta para escaparate virtual 
+Nombre: joao
+Apellidos: ortiz
+Email: ojoao_funkyman@hotmail.com
+Contraseña: e7c677e747fdbe6c665dbce6fbfad9ba6897c93a
+Url: http://sss.com
+Direccion: jose celestino
+Pais: España
+Codigo Postal: 28703
+Mensaje: probando generar archivo

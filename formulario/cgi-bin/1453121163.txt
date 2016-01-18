@@ -1,0 +1,10 @@
+DATOS DE ALTA PARA ESCAPARATE VIRTUAL 
+Nombre: david
+Apellidos: villaluenga
+Email: david@david.com
+Contraseña: 8cb2237d0679ca88db6464eac60da96345513964
+Url: http://start.com
+Direccion: san sebastian de los reyes
+Pais: Italia
+Codigo Postal: 333333
+Mensaje: probando la creacion del text mediante una sola cadena de variables

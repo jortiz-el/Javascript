@@ -40,7 +40,7 @@ body {
     padding:3px;
 }
 .contact_form input {
-    height:20px; 
+    height:30px; 
     width:220px; 
     padding:5px 8px;
 }
@@ -120,8 +120,8 @@ button.submit:active, button.delete:active {
     color: white;
     margin-left:8px;
     padding: 1px 6px;
-    z-index: 999; /* hints stay above all other elements */
-    position: absolute; /* allows proper formatting if hint is two lines */
+    z-index: 999; 
+    position: absolute; 
     display: none;
 }
 .form_hint::before {
@@ -136,7 +136,18 @@ button.submit:active, button.delete:active {
 }
 .contact_form input:required:valid + .form_hint {
     background: #28921f;
-} /* change form hint color when valid */
+}
 .contact_form input:required:valid + .form_hint::before {
     color:#28921f;
-} /* change form hint arrow color when valid */
+} 
+.cookie_form {
+    background-color: lightyellow;
+    display: inline-block;
+    padding: 20px 50px 20px 50px;
+}
+.cookie_form button {
+    float: right;
+}
+h3 {
+    color: #d45252;
+}

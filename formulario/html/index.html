@@ -2,18 +2,26 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>HTML5 Contact Form</title>
-    <link rel="stylesheet" media="screen" href="css/style.css" >
+    <title>Contact Form virtual showcase</title>
+    <link rel="stylesheet" media="screen" href="../html/css/style.css" >
+    <script src="../html/js/form.js" defer></script>
 </head>
 <body>
-	<form class="contact_form" action="" method="post" name="contact_form">
+	
+		<div class="cookie_form" id="cookie_form">
+			<h1>INFORMACIÓN IMPORTANTE SOBRE COOKIES</h1>
+			<h3>Este sitio web utiliza cookies propias para ofrecer un mejor servicio.</h3>
+			 <button class="submit" id="acept_cookie" type="submit">Aceptar Cookies</button>
+		</div>
+	
+    <form class="contact_form" action='index.php' method="post" name="contact_form">
 		<ul>
 		    <li>
 		         <h2>Formulario de alta para el escaparate virtual</h2>
 		         <span class="required_notification">* Denota campo obrigatório</span>
 		    </li>
 		    <li>
-		        <label for="name">Nonmbre:</label>
+		        <label for="name">Nombre:</label>
 		        <input type="text" name="name" placeholder="Joao" required/>
 		    </li>
 		    <li>
@@ -28,6 +36,7 @@
 			<li>
 			    <label for="pass">Contraseña:</label>
 			    <input type="password" name="pass" required/>
+			    <span class="form_hint">Formato 6(Carct)-1(May)-1(Min)-1(Num)-1(Simbolo)</span>
 			</li>
 			<li>
 			    <label for="conf_pass">Confirmar Contraseña:</label>
@@ -48,11 +57,11 @@
 			</li>
 			<li>
 			    <label for="country">Pais:</label>
-			    <select name="country" id="" >
-			    	<option value="">España</option>
-			    	<option value="">Francia</option>
-			    	<option value="">Italia</option>
-			    	<option value="">Inglaterra</option>
+			    <select name="country">
+			    	<option value="España">España</option>
+			    	<option value="Francia">Francia</option>
+			    	<option value="Italia">Italia</option>
+			    	<option value="Inglaterra">Inglaterra</option>
 			    </select>
 			</li>
 			<li>
