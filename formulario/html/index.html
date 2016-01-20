@@ -22,25 +22,25 @@
 		    </li>
 		    <li>
 		        <label for="name">Nombre:</label>
-		        <input type="text" name="name" placeholder="Joao" required/>
+		        <input type="text" name="name" id="name" placeholder="Joao" required/>
 		    </li>
 		    <li>
 		        <label for="surname">Apellidos:</label>
-		        <input type="text" name="surname" placeholder="Ortiz Alegre" required/>
+		        <input type="text" name="surname" id="surname" placeholder="Ortiz Alegre" required/>
 		    </li>
 		    <li>
 			    <label for="email">Email:</label>
-			    <input type="email" name="email" placeholder="joao@example.com" required/>
+			    <input type="email" name="email" id="email" placeholder="joao@example.com" required/>
 			    <span class="form_hint">Formato correcto "name@something.com"</span>
 			</li>
 			<li>
 			    <label for="pass">Contraseña:</label>
-			    <input type="password" name="pass" required/>
+			    <input type="password" name="pass" id="pass" required/>
 			    <span class="form_hint">Formato 6(Carct)-1(May)-1(Min)-1(Num)-1(Simbolo)</span>
 			</li>
 			<li>
 			    <label for="conf_pass">Confirmar Contraseña:</label>
-			    <input type="password" name="conf_pass" required/>
+			    <input type="password" name="conf_pass" id="conf_pass" required/>
 			</li>
 			<li>
 			    <label for="use">Condiciones de Uso:</label>
@@ -57,14 +57,14 @@
 			</li>
 			<li>
 			    <label for="country">Pais:</label>
-			    <select name="country">
+			    <select name="country" id="country">
 			    	<option value="España">España</option>
 			    	<option value="Francia">Francia</option>
 			    	<option value="Italia">Italia</option>
 			    	<option value="Inglaterra">Inglaterra</option>
 			    </select>
 			</li>
-			<li>
+			<li id="spain">
 			    <label for="post_code">Codigo Postal:</label>
 			    <input type="text" name="post_code" placeholder="28703"/>
 			</li>
