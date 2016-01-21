@@ -1,0 +1,10 @@
+DATOS DE ALTA PARA ESCAPARATE VIRTUAL 
+Nombre: j
+Apellidos: j
+Email: jorge@jorge.com
+Contraseña: 2744c30c5cf629008e5560f2835116d28023d629
+Url: 
+Direccion: 
+Pais: España
+Codigo Postal: 
+Mensaje: 

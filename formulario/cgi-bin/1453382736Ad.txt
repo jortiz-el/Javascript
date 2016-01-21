@@ -1,0 +1,10 @@
+DATOS DE ALTA PARA ESCAPARATE VIRTUAL 
+Nombre: joa
+Apellidos: joa
+Email: ojoao@ojoao.com
+Contraseña: 9a8caf0c04717bbfc62d39b97ac0898a650bde19
+Url: 
+Direccion: 
+Pais: España
+Codigo Postal: 
+Mensaje: 

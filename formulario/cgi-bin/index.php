@@ -1,20 +1,14 @@
 <?php
 
-$cookie_name = "formulario";
-$cookie_value = "escaparate virtual";
-
-if(!isset($_COOKIE[$cookie_name])) {
-    echo "Cookie named '" . $cookie_name . "' is not set!";
-    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
-} else {
-    //echo "Cookie '" . $cookie_name . "' is set!<br>";
-    //echo "Value is: " . $_COOKIE[$cookie_name];
+function unic_number() {
+	$leters = ["Aa","Ab","Ac","Ad","Ae"];
+	$ran = array_rand($leters);
+	return time().$leters[$ran];
 }
 
 if (isset($_POST['name'])) {
-	echo "<br><br>";
 	$name_ar = "ARCHIVO.TXT";
-	$new_name = time().'.'.end(explode(".", strtolower($name_ar)));
+	$new_name = unic_number().'.'.end(explode(".", strtolower($name_ar)));
 	$ar = fopen($new_name , "a");
 
 	$head = "Datos de alta para escaparate virtual \n";
@@ -29,10 +23,15 @@ if (isset($_POST['name'])) {
 	$message = "Mensaje: ".$_POST['message']."\n";
 	$data = strtoupper($head).$name.$surname.$email.$pass.$url.$adress.$country.$post_code.$message;
 
-	//fwrite($ar, "\n");
 	fwrite($ar, $data);
+}else if (isset($_POST['acept_cookie'])) {
+	$cookie_name = "formulario";
+	$cookie_value = unic_number();
 
-
+	if(!isset($_COOKIE[$cookie_name])) {
+	    //echo "Cookie named '" . $cookie_name . "' is not set!";
+	    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+	} 
 }
 
 include_once ('../html/index.html');
