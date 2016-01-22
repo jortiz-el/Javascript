@@ -6,20 +6,20 @@ var NAME = /^[A-Za-z\_\-\.\s\xF1\xD1]+$/,
 	WEBSITE = /^[a-z]{2,}:([0-9]+|\/\/){1}[^\s-]*$/i,
 	POSTCODE = /^([0-4][0-9]{4}|[5][0-2][0-9]{3})$/;
 
-function $(id) {
-	return document.getElementById(id);
-}
-
-$("acept_cookie").addEventListener("click",hide,false);
-$("name").addEventListener("keyup",function(){validInput(NAME,$("name"));},false);
-$("surname").addEventListener("keyup",function(){validInput(SURNAME,$("surname"));},false);
-$("pass").addEventListener("keyup",function(){validInput(PASS,$("pass"));},false);
-$("conf_pass").addEventListener("keyup",conf_pass,false);
-$("country").addEventListener("change",country,false);
-$("email").addEventListener("keyup",function(){validInput(EMAIL,$("email"));},false);
-$("website").addEventListener("keyup",function(){validInput(WEBSITE,$("website"));},false);
-$("post_code").addEventListener("keyup",function(){validInput(POSTCODE,$("post_code"));},false);
-
+function events(){
+	function $(id) {
+		return document.getElementById(id);
+	}
+	$("acept_cookie").addEventListener("click",hide,false);
+	$("name").addEventListener("keyup",function(){validInput(NAME,$("name"));},false);
+	$("surname").addEventListener("keyup",function(){validInput(SURNAME,$("surname"));},false);
+	$("pass").addEventListener("keyup",function(){validInput(PASS,$("pass"));},false);
+	$("conf_pass").addEventListener("keyup",conf_pass,false);
+	$("country").addEventListener("change",country,false);
+	$("email").addEventListener("keyup",function(){validInput(EMAIL,$("email"));},false);
+	$("website").addEventListener("keyup",function(){validInput(WEBSITE,$("website"));},false);
+	$("post_code").addEventListener("keyup",function(){validInput(POSTCODE,$("post_code"));},false);
+	checkcookie();
 function hide() {
 	$("cookie_form").style.display = "none";
 }
@@ -34,11 +34,7 @@ function validInput(patt,id) {
 function conf_pass() {
 	var pass = $("pass").value,
 		conf_pass = $("conf_pass").value;
-		if (pass === conf_pass) {
-			$("conf_pass").setCustomValidity("");
-		} else {
-			$("conf_pass").setCustomValidity("Invalid field.");
-		}
+	$("conf_pass").setCustomValidity(pass === conf_pass?"":"Invalid field.");
 }
 function country() {
 	var selected = $("country").selectedIndex;
@@ -52,5 +48,6 @@ function checkcookie() {
 	var valid = document.cookie;
 	$("cookie_form").style.display = (valid !== "")?"none":"block";
 }
-window.onload = checkcookie;
+}
+window.onload = events;
 
