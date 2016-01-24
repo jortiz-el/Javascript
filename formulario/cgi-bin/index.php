@@ -25,7 +25,7 @@ if (isset($_POST['name'])) {
 
 	fwrite($ar, $data);
 }else if (isset($_POST['acept_cookie'])) {
-	$cookie_name = "formulario";
+	$cookie_name = "vinil-shirt";
 	$cookie_value = unic_number();
 
 	if(!isset($_COOKIE[$cookie_name])) {
