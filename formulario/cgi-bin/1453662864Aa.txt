@@ -1,0 +1,10 @@
+DATOS DE ALTA PARA ESCAPARATE VIRTUAL 
+Nombre: javier
+Apellidos: ruiz-toledo
+Email: game@javier.es
+Contraseña: 2744c30c5cf629008e5560f2835116d28023d629
+Url: hhtp://www.javier.es
+Direccion: c/jose celestino
+Pais: España
+Codigo Postal: 20000
+Mensaje: probando probandooo
