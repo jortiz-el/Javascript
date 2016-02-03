@@ -1,9 +1,21 @@
 //globales como espacio de nombres
 var globals = (function (ns) {
     ns.INPUTS = ["Valor", "Clase"];
-    ns.TITLE = "Manipulacion de documentos a traves del DOM";
+    ns.TITLE = "Manipulación de documentos a través del DOM";
+    ns.form_data = new form_data();
     return ns;
 }({}));
+
+function form_data() {
+    this.datas = [];
+}
+function data(valor, clase) {
+    this.valor = value;
+    this.clas = clas;
+}
+form_data.prototype.insert = function (valor, clase) {
+    this.datas.push(new data(valor, clase));
+}
 
 function $(id) {
     return document.getElementById(id);
@@ -30,7 +42,7 @@ function createTextForm(inputs) {
         input.name = item;
         form.appendChild(input);
         });
-        button.appendChild(textNode("Enviar"));
+        button.appendChild(textNode("Añadir"));
         button.id = "enviar";
         document.body.appendChild(button);
 }
@@ -39,14 +51,23 @@ function createList() {
     ul.appendChild(textNode("<<Lista>>"));
     document.body.appendChild(ul);
 }
-function validation() {
+/*function validation() {
     var clase = document.forms[0].children[3].value,
         ul = document.getElementsByTagName("UL")[0];
     Array.forEach(ul.children,function(x){
     return x.className === clase?1:0;
     });
-    }
+}
+*/
+function add_data() {
+    var valor = document.forms[0].children[1].value,
+        clase = document.forms[0].children[3].value;
+        globals.form_data.insert(valor, clase);
+}
 function insertList() {
+
+
+    /*
     var valor = document.forms[0].children[1].value,
         clase = document.forms[0].children[3].value,
         ul = document.getElementsByTagName("UL")[0],
@@ -60,6 +81,7 @@ function insertList() {
         option.value = clase;
         select.appendChild(option);
         document.forms[0].reset();
+        */
 }
 function deleteList() {
     var select = document.getElementsByTagName("SELECT")[0],
