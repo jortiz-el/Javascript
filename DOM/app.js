@@ -1,8 +1,11 @@
 //globales como espacio de nombres
 var globals = (function (ns) {
     ns.INPUTS = ["Valor", "Clase"];
+    ns.BUTTONS = ["ingresar", "eliminar", "tabla"];
     ns.TITLE = "Manipulación de documentos a través del DOM";
     ns.form_data = new form_data();
+    ns.COLOR_DOWN = "#78C700"; 
+    ns.COLOR_UP = "#CA1D1F"; 
     return ns;
 }({}));
 
@@ -10,12 +13,34 @@ function form_data() {
     this.datas = [];
 }
 function data(valor, clase) {
-    this.valor = value;
-    this.clas = clas;
+    this.valor = valor;
+    this.clase = clase;
 }
 form_data.prototype.insert = function (valor, clase) {
     this.datas.push(new data(valor, clase));
 }
+form_data.prototype.array_class_unique = function () {
+    var arr_class = this.datas.map(function (x) {
+        return x.clase;
+    }).filter(function (element, index, arrayMap) {
+        return arrayMap.indexOf(element) === index;
+    });
+    return arr_class;
+};
+form_data.prototype.array_value_unique = function () {
+    var arr_value = this.datas.map(function (x) {
+        return x.valor;
+    }).filter(function (element, index, arrayMap) {
+        return arrayMap.indexOf(element) === index;
+    });
+    return arr_value;
+};
+form_data.prototype.count_datas = function (clase, valor) {
+    var num = this.datas.reduce(function (x, y) {
+        return (y.clase === clase && y.valor === valor) ? x + 1 : x;
+    }, 0);
+    return num;
+};
 
 function $(id) {
     return document.getElementById(id);
@@ -28,8 +53,7 @@ function create(element) {
 }
 
 function createTextForm(inputs) {
-    var form = create("form"),
-        button = create("button");
+    var form = create("form");
         document.body.appendChild(form);
 
         inputs.forEach(function (item) {
@@ -42,82 +66,145 @@ function createTextForm(inputs) {
         input.name = item;
         form.appendChild(input);
         });
-        button.appendChild(textNode("Añadir"));
-        button.id = "enviar";
-        document.body.appendChild(button);
 }
-function createList() {
-    var ul = create("ul");
-    ul.appendChild(textNode("<<Lista>>"));
-    document.body.appendChild(ul);
+function create_sec_List() {
+    var sec = create("section");
+    sec.id = "lista";
+    document.body.appendChild(sec);
 }
-/*function validation() {
-    var clase = document.forms[0].children[3].value,
-        ul = document.getElementsByTagName("UL")[0];
-    Array.forEach(ul.children,function(x){
-    return x.className === clase?1:0;
-    });
+function clean_section() {
+    Array.from($("lista").children).forEach(function(x){x.remove();})
+    Array.from($("selector").children).forEach(function(x){x.remove();})
 }
-*/
+function update() {
+    if ($("tabla").textContent === "tabla"){
+            clean_section();
+            insert_list();
+            insert_select();
+        }else {
+            clean_section();
+            insert_table();
+            insert_select();
+        }
+}
 function add_data() {
     var valor = document.forms[0].children[1].value,
         clase = document.forms[0].children[3].value;
         globals.form_data.insert(valor, clase);
+        update();        
 }
-function insertList() {
-
-
-    /*
-    var valor = document.forms[0].children[1].value,
-        clase = document.forms[0].children[3].value,
-        ul = document.getElementsByTagName("UL")[0],
-        li = create("li"),
-        select = document.getElementsByTagName("SELECT")[0],
-        option = create("option");
-        li.appendChild(textNode(valor));
-        li.className = clase;
-        ul.appendChild(li);
-        option.appendChild(textNode(clase));
-        option.value = clase;
-        select.appendChild(option);
-        document.forms[0].reset();
-        */
-}
-function deleteList() {
+function delete_list() {
     var select = document.getElementsByTagName("SELECT")[0],
         ul = document.getElementsByTagName("UL")[0],
         selected = select.selectedIndex;
         document.querySelector("." + select.children[selected].value).remove();
         select.removeChild(select.children[selected]);
 }
-
-function createSelector() {
-    var select = create("select"),
-        button = create("button");
-        document.body.appendChild(select);
-        button.appendChild(textNode("Eliminar"));
-        button.id = "eliminar";
-        document.body.appendChild(button);
-  
+function insert_list() {
+    var ul = create("ul");
+        globals.form_data.datas.forEach(function (x) {
+            var li = create("li");
+            li.appendChild(textNode(x.valor));
+            li.className = x.clase;
+            ul.appendChild(li);
+        });
+        $("lista").appendChild(ul);
 }
-function title(text) {
+function insert_select() {
+    globals.form_data.array_class_unique().forEach(function (x) {
+        var opt = create("option");
+        opt.appendChild(textNode(x));
+        opt.value = x;
+        $("selector").appendChild(opt);
+    });
+}
+function insert_table() {
+    var table = create("table"),
+        tr = create("tr"),
+        td = create("td"),
+        numobj;
+        tr.appendChild(td);
+        table.appendChild(tr);
+        globals.form_data.array_class_unique().forEach(function (x) {
+            td = create("td");
+            td.appendChild(textNode(x));
+            tr.appendChild(td);
+        });
+        globals.form_data.array_value_unique().forEach(function (v) {
+            tr = create("tr");
+            td = create("td");
+            td.appendChild(textNode(v));
+            tr.appendChild(td);
+            globals.form_data.array_class_unique().forEach(function (c) {
+                td = create("td");
+                numobj = globals.form_data.count_datas(c, v);
+                td.appendChild(textNode(numobj));
+                if (numobj < 2) {
+                    td.style.color = globals.COLOR_DOWN;
+                }else if (numobj > 2) {
+                    td.style.color = globals.COLOR_UP;
+                }
+                tr.appendChild(td);
+            });
+            table.appendChild(tr);
+        });
+        $("lista").appendChild(table);
+
+}
+function change_state() {
+    if ($("tabla").textContent === "tabla"){
+            $("tabla").textContent = "lista";
+            clean_section();
+            insert_table();
+            insert_select();
+        }else {
+            $("tabla").textContent = "tabla";
+            clean_section();
+            insert_list();
+            insert_select();
+        }
+}
+
+
+function create_selector() {
+    var select = create("select");
+    select.id = "selector";
+    document.body.appendChild(select);
+}
+function create_buttons(buttons) {
+    buttons.forEach(function (item) {
+        var button = create("button");
+        button.appendChild(textNode(item));
+        button.id = item;
+        document.body.appendChild(button);
+    });
+}
+function title_dom(text) {
     var h = create("h1");
-        //meta = document.createElement("meta"),
-        //script = document.head.firstChild;
-        //meta.setAttribute("charset","Utf-8");
     h.appendChild(textNode(text));
     document.body.appendChild(h);
-    //ingresar meta charset 
-    //document.head.insertBefore(meta, script);
+    
+}
+function create_tree() {
+    var meta = document.createElement("meta"),
+        script = document.head.firstChild,
+        doctype = document.implementation.createDocumentType('html', '', '');
+        meta.setAttribute("charset","Utf-8");
+        //ingresar meta charset y doctype 
+        document.head.insertBefore(meta, script);
+        document.insertBefore(doctype, document.childNodes[0]);
 }
 
 function main() {
-   title(globals.TITLE);
+   create_tree(); 
+   title_dom(globals.TITLE);
    createTextForm(globals.INPUTS);
-   createList();
-   createSelector();
-   $("enviar").addEventListener("click", insertList, false);
-   $("eliminar").addEventListener("click", deleteList, false);
+   create_sec_List();
+   create_selector();
+   create_buttons(globals.BUTTONS);
+   $("ingresar").addEventListener("click", add_data, false);
+   $("eliminar").addEventListener("click", delete_list, false);
+   $("tabla").addEventListener("click", change_state, false);
 }
 
 window.onload = main; 
