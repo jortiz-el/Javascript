@@ -1,7 +1,7 @@
 //globales como espacio de nombres
 var globals = (function (ns) {
     ns.INPUTS = ["Valor", "Clase"];
-    ns.BUTTONS = ["ingresar", "eliminar", "tabla"];
+    ns.BUTTONS = ["añadir", "eliminar", "tabla"];
     ns.TITLE = "Manipulación de documentos a través del DOM";
     ns.form_data = new form_data();
     ns.COLOR_DOWN = "#78C700"; 
@@ -72,26 +72,17 @@ function create_sec_List() {
     sec.id = "lista";
     document.body.appendChild(sec);
 }
-function clean_section() {
-    Array.from($("lista").children).forEach(function(x){x.remove();})
-    Array.from($("selector").children).forEach(function(x){x.remove();})
+function clean_section(item) {
+    Array.from(item.children).forEach(function(x){x.remove();})
 }
 function update() {
-    if ($("tabla").textContent === "tabla"){
-            clean_section();
-            insert_list();
-            insert_select();
-        }else {
-            clean_section();
-            insert_table();
-            insert_select();
-        }
+    ($("tabla").textContent === "tabla")?insert_list():insert_table();
 }
 function add_data() {
     var valor = document.forms[0].children[1].value,
         clase = document.forms[0].children[3].value;
         globals.form_data.insert(valor, clase);
-        update();        
+        insert_select();        
 }
 function delete_list() {
     var select = document.getElementsByTagName("SELECT")[0],
@@ -101,6 +92,7 @@ function delete_list() {
         select.removeChild(select.children[selected]);
 }
 function insert_list() {
+    clean_section($("lista"));
     var ul = create("ul");
         globals.form_data.datas.forEach(function (x) {
             var li = create("li");
@@ -111,6 +103,7 @@ function insert_list() {
         $("lista").appendChild(ul);
 }
 function insert_select() {
+    clean_section($("selector"));
     globals.form_data.array_class_unique().forEach(function (x) {
         var opt = create("option");
         opt.appendChild(textNode(x));
@@ -119,6 +112,7 @@ function insert_select() {
     });
 }
 function insert_table() {
+    clean_section($("lista"));
     var table = create("table"),
         tr = create("tr"),
         td = create("td"),
@@ -152,19 +146,9 @@ function insert_table() {
 
 }
 function change_state() {
-    if ($("tabla").textContent === "tabla"){
-            $("tabla").textContent = "lista";
-            clean_section();
-            insert_table();
-            insert_select();
-        }else {
-            $("tabla").textContent = "tabla";
-            clean_section();
-            insert_list();
-            insert_select();
-        }
+    $("tabla").textContent = ($("tabla").textContent === "tabla")?"lista":"tabla";
+    update();
 }
-
 
 function create_selector() {
     var select = create("select");
@@ -202,9 +186,12 @@ function main() {
    create_sec_List();
    create_selector();
    create_buttons(globals.BUTTONS);
-   $("ingresar").addEventListener("click", add_data, false);
+   $("añadir").addEventListener("click", add_data, false);
    $("eliminar").addEventListener("click", delete_list, false);
    $("tabla").addEventListener("click", change_state, false);
+   var config = { attributes: false, childList: true, characterData: false };
+   observer = new MutationObserver(update);
+   observer.observe($("selector"), config);
 }
 
 window.onload = main; 
