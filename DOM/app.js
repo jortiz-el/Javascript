@@ -41,6 +41,11 @@ form_data.prototype.count_datas = function (clase, valor) {
     }, 0);
     return num;
 };
+form_data.prototype.remove = function (classValue) {
+     this.datas = this.datas.filter(function (x, y, z) {
+      return x.clase !== classValue;
+    });
+};
 
 function $(id) {
     return document.getElementById(id);
@@ -86,10 +91,9 @@ function add_data() {
 }
 function delete_list() {
     var select = document.getElementsByTagName("SELECT")[0],
-        ul = document.getElementsByTagName("UL")[0],
-        selected = select.selectedIndex;
-        document.querySelector("." + select.children[selected].value).remove();
-        select.removeChild(select.children[selected]);
+        selected = select.value;
+        globals.form_data.remove(selected);
+        insert_select(); 
 }
 function insert_list() {
     clean_section($("lista"));
@@ -174,7 +178,7 @@ function create_tree() {
         script = document.head.firstChild,
         doctype = document.implementation.createDocumentType('html', '', '');
         meta.setAttribute("charset","Utf-8");
-        //ingresar meta charset y doctype 
+        // meta charset y doctype 
         document.head.insertBefore(meta, script);
         document.insertBefore(doctype, document.childNodes[0]);
 }
