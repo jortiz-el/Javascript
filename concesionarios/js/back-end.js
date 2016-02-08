@@ -123,7 +123,7 @@ if (haveExports === "undefined") {
             i += 1;
         }
         if ((i === 9) && (fecha[0] !== " ") && (fecha[1] !== " ") &&
-                (fecha[5] !== " ") && (fecha[8] !== " ")) {
+            (fecha[5] !== " ") && (fecha[8] !== " ")) {
             switch (mes) {
             case "jan":
             case "mar":
