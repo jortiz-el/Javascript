@@ -1,0 +1,14 @@
+{
+  "name": "vinil_shirt_ajax",
+  "version": "1.0.0",
+  "description": "tienda virtual",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "jslint":"latest"
+  },
+  "author": "joao ortiz alegre",
+  "license": "ISC"
+}

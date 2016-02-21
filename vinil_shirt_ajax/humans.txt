@@ -22,7 +22,7 @@ especial thanks to the teacher
 
 # TECHNOLOGY COLOPHON
 
-    CSS3, HTML5
+    CSS3, HTML5, AJAX
     Apache Server Configs, jQuery, Modernizr, Normalize.css
 
-HTML5 , CSS3 y JavaScript
+HTML5 , CSS3 , JavaScript y AJAX

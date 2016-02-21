@@ -24,8 +24,8 @@ and open the template in the editor.
         <section  class="row">
           <div id="logo" class="col-md-2 cyan">
             <figure class="">
-              <img id="logolg" src="imagenes/logo2.png" >
-              <img id="logoxs">
+              <a href=""> <img id="logolg" src="imagenes/logo2.png" ></a>
+              <a href=""> <img id="logoxs"></a>
             </figure>
           </div>
           <div class="col-md-10 ">
@@ -37,8 +37,9 @@ and open the template in the editor.
                 <input type="text" class="cyan" id="cuenta_carro" value="0" readonly="readonly"/>
               </section >
                 <div id="searchdiv"  class="col-lg-8 col-md-8 col-sm-7 col-xs-7 pull-right">
-                    <form action="" method="post" class="navbar-form" role="search">
+                    
                     <div class="input-group">
+                      <!-- busqueda extra
                       <div id="select_search" class=" pull-left">
                         <select class="form-control">
                           <option>Camisetas Chico</option>
@@ -49,16 +50,18 @@ and open the template in the editor.
                           <option>humor</option>
                         </select>
                       </div>
-                      <div >
-                      <input id="text_search" type="text" class="form-control" placeholder="Busca tus productos..." name="srch-term" id="srch-term">
-                      <!-- boton de busqueda
-                      <div class="input-group-btn">
-                        <button class="btn btn-primary cyan" name="buscar" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                      </div>
                       -->
+                      <div >
+                        <input id="text_search" list="livesearch" type="text" class="form-control" placeholder="Busca tus productos..." name="srch-term" id="srch-term" autocomplete="off">
+                        <datalist id="livesearch"></datalist>
+                        <div id="livedatasearch"></div>
+                        <div class="input-group-btn">
+                          <button class="btn btn-default cyan" name="buscar" id="live_buscar" ><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                      
+                      </div>
                     </div>
-                    </div>
-                  </form>
+                  
                 </div>
             </section>
             <section id="producto">
@@ -124,99 +127,19 @@ and open the template in the editor.
         </form>
       </section>
       -->
-      <header>
+      <div class="container" id="ordena">
+        <label for="ordena">Ordenar productos por:</label>
+        <select class="form-control" id="cajaOrdena">
+          <option value="name">Nombre</option>
+          <option value="price">Precio</option>
+          <option value="img">Categoria</option>
+        </select>
+        <button id="ordenar" class="btn btn-default cyan">Ordenar</button>
+      </div>
+      <header id="titulo_buscados">
           <h2>Diseños<span id="wanted"> Mas buscados</span></h2>
       </header>
-      <div class="container row">
-        <div class="col-md-4 col-lg-3 col-sm-6 col-xs-9 out_margin">
-          <div class="ribbon"><span>OFERTA</span></div>
-          <div class="div-img">
-              <img class="img" src="imagenes/ch2.jpg" title="starwars" alt="oferta">
-              <div class="text_img">Camiseta Chica Stark</div>
-              <div class="text_img textprice"><span class="descuento">24.95€ </span>17.95€</div>
-          </div>
-        </div>
-        <div class="col-md-4 col-lg-3 col-sm-6 col-xs-9 out_margin">
-          <div class="div-img">
-              <img class="img" src="imagenes/co3.jpg" title="starwars" alt="oferta">
-              <div class="text_img">Camiseta Starwars</div>
-              <div class="text_img textprice">24.95€</div>
-          </div>
-        </div>
-        <div class="col-md-4 col-lg-3 col-sm-6 col-xs-9 out_margin">
-          <div class="ribbon"><span>OFERTA</span></div>
-          <div class="div-img">
-              <img class="img" src="imagenes/gp7.jpg" title="starwars" alt="oferta">
-              <div class="text_img">Gorra Plana Perdidos</div>
-              <div class="text_img textprice"><span class="descuento">19.95€ </span>13.95€</div>
-          </div>
-        </div>
-        <div class="col-md-4 col-lg-3 col-sm-6 col-xs-9 out_margin">
-          <div class="div-img">
-              <img class="img" src="imagenes/sc4.jpg" title="starwars" alt="oferta">
-              <div class="text_img">sudadera RastaMan</div>
-              <div class="text_img textprice">27.95€</div>
-          </div>
-        </div>
-        <div class="col-md-4 col-lg-3 col-sm-6 col-xs-9 out_margin">
-          <div class="ribbon"><span>OFERTA</span></div>
-          <div class="div-img">
-              <img class="img" src="imagenes/mu3.jpg" title="starwars" alt="oferta">
-              <div class="text_img">Musculosa Surf</div>
-              <div class="text_img textprice"><span class="descuento">22.95€ </span>19.95€</div>
-          </div>
-        </div>
-        <div class="col-md-4 col-lg-3 col-sm-6 col-xs-9 out_margin">
-          <div class="div-img">
-              <img class="img" src="imagenes/sc1.jpg" title="starwars" alt="oferta">
-              <div class="text_img">Sudadera Pulp Fiction</div>
-              <div class="text_img textprice">27.95€</div>
-          </div>
-        </div>
-        <div class="col-md-4 col-lg-3 col-sm-6 col-xs-9 out_margin">
-          <div class="div-img">
-              <img class="img" src="imagenes/su2.jpg" title="starwars" alt="oferta">
-              <div class="text_img">sudadera retro</div>
-              <div class="text_img textprice">23.95€</div>
-          </div>
-        </div>
-        <div class="col-md-4 col-lg-3 col-sm-6 col-xs-9 out_margin">
-          <div class="ribbon"><span>OFERTA</span></div>
-          <div class="div-img">
-              <img class="img" src="imagenes/ta3.jpg" title="starwars" alt="oferta">
-              <div class="text_img">Taza heisenberg</div>
-              <div class="text_img textprice"><span class="descuento">15.95€ </span>11.95€</div>
-          </div>
-        </div>
-        <div class="col-md-4 col-lg-3 col-sm-6 col-xs-9 out_margin">
-          <div class="div-img">
-              <img class="img" src="imagenes/co2.jpg" title="starwars" alt="oferta">
-              <div class="text_img">Camiseta Calavera</div>
-              <div class="text_img textprice">17.95€</div>
-          </div>
-        </div>
-        <div class="col-md-4 col-lg-3 col-sm-6 col-xs-9 out_margin">
-          <div class="div-img">
-              <img class="img" src="imagenes/gt7.jpg" title="starwars" alt="oferta">
-              <div class="text_img">Gorra Trucker Dember</div>
-              <div class="text_img textprice">17.95€</div>
-          </div>
-        </div>
-        <div class="col-md-4 col-lg-3 col-sm-6 col-xs-9 out_margin">
-          <div class="div-img">
-              <img class="img" src="imagenes/co8.jpg" title="starwars" alt="oferta">
-              <div class="text_img">camiseta Freak</div>
-              <div class="text_img textprice">16.95€</div>
-          </div>
-        </div>
-        <div class="col-md-4 col-lg-3 col-sm-6 col-xs-9 out_margin">
-          <div class="div-img">
-              <img class="img" src="imagenes/sc2.jpg" title="starwars" alt="oferta">
-              <div class="text_img">Sudadera retro</div>
-              <div class="text_img textprice">27.95€</div>
-          </div>
-        </div>
-      </div>
+      <div class="container row" id="productos"></div>
       <section id ="bannerEnvio">
         <h2>Envios Gratis</h2>
         <br>

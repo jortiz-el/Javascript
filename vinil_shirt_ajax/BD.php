@@ -1,8 +1,8 @@
 <?php
 
-$basedatos = '2063414_vinil';
-$usuario = '2063414_vinil';
-$contrasenya = 'entrar08';
+$basedatos = 'vinilajax';
+$usuario = 'root';
+$contrasenya = '';
 $equipo = 'localhost';
 
 class BD {
@@ -11,7 +11,7 @@ class BD {
 
     private function __construct() {
         try {
-            self::$bd = new PDO('mysql:host=fdb6.atspace.me;dbname=2063414_vinil;charset=utf8', '2063414_vinil', 'entrar08');
+            self::$bd = new PDO('mysql:host=localhost;dbname=vinilajax;charset=utf8', 'root', '');
             self::$bd->exec("set names utf8");
             self::$bd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {

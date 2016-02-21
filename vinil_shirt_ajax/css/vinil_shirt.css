@@ -1,4 +1,6 @@
-
+.sizetext{
+    font-size: 2em;
+}
 
 .gris {
 	background-color: #b2b1b1;
@@ -56,8 +58,10 @@
 }
 /*--------search bar-------------*/
 #search {
-	overflow: hidden;
-	height: 1%;
+	height: 90px;
+	z-index: 999;
+	/*overflow: hidden;
+	height: 1%;*/
 }
 
 .input-group {
@@ -69,6 +73,39 @@
 h1 {
 	background-color: blue;
 }
+#livesearch, #livedatasearch{
+        background-color: white;
+        position: absolute;
+        top:34px;
+        color: #9f9d9e;
+        clear: both;
+        z-index: 99;
+}
+.search_img {
+	float: left;
+	margin-right: 15px;
+	width: 50px;
+	height: 50px;
+}
+#livesearch div {
+	width: 100%;
+}
+#livedatasearch {
+	width: 80%;
+	max-height: 400px;
+
+}
+#livedatasearch p {
+	padding-top: 15px;
+}
+.livedivsearch {
+	border-bottom: 1px solid #A5ACB2;
+	padding: 0px 0px 5px 0px;
+}
+.desc_img {
+	width: 100%;
+}
+
 
 /*--------carrito-producto-------------*/
 
@@ -80,6 +117,7 @@ h1 {
 }
 #searchdiv {
 	margin: 0px;
+
 }
 #usuario {
 	background-image: url(../imagenes/usuario.png);
@@ -124,6 +162,7 @@ h1 {
 #navegacion {
 	margin-bottom: 0px;
 	border:none;
+        z-index: 9;
 }
 #navbar-1 {
 	margin: 0px;
@@ -136,6 +175,9 @@ h1 {
 }
 .dropdown-menu li a:hover{
 	color:#b2b1b1;
+}
+.container-fluid {
+        z-index: 9;
 }
 /*-----------banner camiseta---------------*/
 #bannerCamiseta {
@@ -163,12 +205,18 @@ header h5 {
 	
 }
 /*--------banner diseños mas buscados-------*/
-
+#cajaOrdena {
+	width: 30%;
+	display: inline-block;
+}
+#ordena {
+	margin-top: 20px;
+}
 .descuento {
 	color: red;
 	text-decoration: line-through;
 }
-header h2 {
+header h2, .title {
 	text-align: center;
 	font-size: 3em;
 	font-weight: bold; 
@@ -553,9 +601,13 @@ figure.redes {
 	#bannerCamiseta {
 	background-image: url(../imagenes/banner_tu_camiseta2.jpg);
 	}
+
 }
 @media (min-width: 991px) {
 	#bannerCamiseta, #bannerEnvio {
 		display: block;
+	}
+	#text_search {
+		min-width: 80%;
 	}
 }
