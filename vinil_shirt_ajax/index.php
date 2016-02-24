@@ -19,6 +19,14 @@ and open the template in the editor.
     <script type="text/javascript" src="js/products.js" defer=""></script>
   </head>
   <body >
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
     <header class="gris">
       <div class="container">
         <section  class="row">
@@ -116,6 +124,7 @@ and open the template in the editor.
     </header>
     <!--seccion de body-->
     <section class="container">
+      <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count"></div>
         <div id="lista"></div>
       <!-- banner prueba tus diseños  
       <section id="bannerCamiseta" class="row">
