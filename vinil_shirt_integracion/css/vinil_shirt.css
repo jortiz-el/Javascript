@@ -322,8 +322,19 @@ p span {
 	font-size: 1.5em
 }
 /*------------pie---------------*/
+#captcha {
+	margin-left:20px;
+	color:red;
+}
+#geomap {
+	display: none;
+}
 #twitter ,.captcha {
 	margin-top: 15px;
+}
+.infowindow{background-color: #16a5a7; color:white; text-align: center; font-size: 16px;}
+.infoimg {
+	float: left;
 }
 #localizaimg img {
 	width: 60px;

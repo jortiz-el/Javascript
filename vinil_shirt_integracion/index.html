@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="css/vinil_shirt.css">
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <script src="js/widgets.js"></script>
+    <script src="js/captcha.js"></script>
   </head>
   <body>
     <header class="gris">
@@ -20,8 +21,8 @@
         <section  class="row">
           <div id="logo" class="col-md-2 cyan">
             <figure class="">
-              <img id="logolg" longdesc="http://www.wikipedia.es" src="imagenes/logo2.png" alt="vinil-shirt" >
-              <img id="logoxs" longdesc="http://www.wikipedia.es" src="imagenes.jpg" alt="vinil-shirt">
+              <a href="/"><img id="logolg" longdesc="http://www.wikipedia.es" src="imagenes/logo2.png" alt="vinil-shirt" ></a>
+              <a href="/"><img id="logoxs" longdesc="http://www.wikipedia.es" src="imagenes.jpg" alt="vinil-shirt"></a>
             </figure>
           </div>
           <div class="col-md-10 ">
@@ -222,32 +223,35 @@
           <input title="boton" type="submit" id="botonenvio" class="cyan boton botongrande" value="Metodos de Envio">
         </form>
       </section>
+      <section id = "geomap">
+        <div class="header">
+          <h2>Tu Tienda<span id="wanted"> Mas cercana</span></h2>
+        </div >
+        <div id="map"></div>
+      </section>
       <section id="twitter" class="row">
         <div class="col-md-6">
           <a class="twitter-timeline"  href="https://twitter.com/VinilShirt" data-widget-id="702639863514996736">Tweets por el @VinilShirt.</a>
         </div>
         <div class="col-md-6">
-          <form>
+          <form id="formCaptcha" >
             <fieldset>
               <legend>Suscribete a Vinil-Shirt para descuentos</legend>
             <div class="form-group">
               <label for="exampleInputName">Nombre Y Apellidos</label>
-              <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Nombre y Apellidos">
+              <input type="text" class="form-control"  placeholder="Nombre y Apellidos" required>
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Dirección Email </label>
-              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+              <input type="email" class="form-control"  placeholder="Email" required>
             </div>
-            <div class="g-recaptcha" data-sitekey="6LctNxkTAAAAABsUse-WJxx0G798UE5aOkW6sLmV"></div>
+            <div class="g-recaptcha" id="rcaptcha"  data-sitekey="6LctNxkTAAAAABsUse-WJxx0G798UE5aOkW6sLmV"></div>
+            <div><span id="captcha"  /></div>
              
-            <button type="submit" class="btn btn-default cyan captcha">Enviar</button>
+            <button  class="btn btn-default cyan captcha" id="formbutton">Enviar</button>
             </fieldset>
           </form>
         </div>
-        
-      </section>
-      <section>
-        <div id="map"></div>
       </section>
     </section>
     <!--seccion de footer-->
@@ -273,6 +277,12 @@
               <figure id="paypal"></figure>
             </article>
             <div >
+              <div id="localizaimg">
+                <div id="geogoogle" >
+                <img src="imagenes/logogoogle.png" alt="localizacion">
+                <p>Geolocalización</p>
+                </div>
+              </div>
               <div class="redes_container">
                 <figure class="redes" id="face"></figure>
                 <figure class="redes" id="twiter"></figure>
@@ -283,16 +293,11 @@
                 <figure class="redes" id="youtube"></figure>
               </div>
             </div>
-            <div id="localizaimg">
-              <div id="geogoogle" >
-              <img src="imagenes/logogoogle.png" alt="localizacion">
-              <p>Geolocalización</p>
-              </div>
-            </div>
+            
           </div>
           <div class="col-md-4 cyan">
             <article>
-              <figure id="mapa"></figure>
+              <a href="/"><figure id="mapa"></figure></a>
             </article>
           </div>
           <div class="col-md-4">
